@@ -78,9 +78,7 @@ const agregarCarrito = (objetoCarrito)=>{
         carrito[indice].cantidad = parseInt(carrito[indice].cantidad) + parseInt(objetoCarrito.cantidad)
 
         console.log(carrito[indice])
-        totalCarrito()
-        //console.log(indice)
-        //carrito.push(objetoCarrito) 
+ 
     } else{
         carrito.push(objetoCarrito)
 
