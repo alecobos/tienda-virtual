@@ -76,7 +76,9 @@ const agregarCarrito = (objetoCarrito)=>{
 
         const indice = carrito.findIndex((elemento)=> elemento.id === objetoCarrito.id)
         carrito[indice].cantidad = parseInt(carrito[indice].cantidad) + parseInt(objetoCarrito.cantidad)
+
         console.log(carrito[indice])
+        totalCarrito()
         //console.log(indice)
         //carrito.push(objetoCarrito) 
     } else{
