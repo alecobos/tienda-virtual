@@ -8,7 +8,6 @@
     color: black;
     width: 300px;
     height: 440px;
-    padding-left: 0px;
     box-shadow: 6px 3px 10px grey;
     border-radius: 10px;
     background-color: lightskyblue;
@@ -35,6 +34,9 @@
     align-items: center;
     color: black;
     text-align: center;
+    background-color: lightskyblue;
+    border-color: blue;
+    border-style: solid;
     ul {
         list-style: none;
     }

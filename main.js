@@ -1,4 +1,4 @@
-const productos = JSON.parse(localStorage.getItem("productos")) || [] 
+const productos = JSON.parse(localStorage.getItem("productos")) || []
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 const pedidos = JSON.parse(localStorage.getItem("pedidos")) || []
 
@@ -38,19 +38,8 @@ const renderizarProductos = (arrayUtilizado)=>{
                 const form = document.getElementById(`form${id}`)
                 form.reset()
             }
-        }) 
+        })
     })
-}
-
-const agregarProducto = ({id, nombre, tipo, precio, stock, descripcion})=>{
-    if(productos.some(prod=>prod.id===id)){
-        // console.warn("Ya existe un producto con ese id") // esto lo podemos ahcer a futuro con librerias
-    } else {
-        const productoNuevo = new Producto(id, nombre, tipo, precio, stock, descripcion)
-        productos.push(productoNuevo)
-        //guarda el nuevo array de productos
-        localStorage.setItem('productos', JSON.stringify(productos))
-    }
 }
 
 const productosPreexistentes = ()=>{
@@ -78,8 +67,26 @@ const totalCarritoRender = ()=>{
 
 
 const agregarCarrito = (objetoCarrito)=>{
-    carrito.push(objetoCarrito)
+
+    const verifica = carrito.some((elemento)=>{
+        return elemento.id === objetoCarrito.id
+    })
+    if (verifica){
+        console.log("entro por aqui")
+
+        const indice = carrito.findIndex((elemento)=> elemento.id === objetoCarrito.id)
+        carrito[indice].cantidad = parseInt(carrito[indice].cantidad) + parseInt(objetoCarrito.cantidad)
+        console.log(carrito[indice])
+        //console.log(indice)
+        //carrito.push(objetoCarrito) 
+    } else{
+        carrito.push(objetoCarrito)
+
+    //console.log(carrito)
+    }
     totalCarritoRender()
+    //console.log(verifica)
+
 }
 
 const renderizarCarrito = ()=>{
@@ -126,7 +133,7 @@ const finalizarCompra = (event)=>{
     localStorage.setItem("pedidos", JSON.stringify(pedidos))
     borrarCarrito()
     let mensaje = document.getElementById("carritoTotal")
-    mensaje.innerHTML = "Muchas gracias por su compra, los esperamos pronto"
+    mensaje.innerHTML = "Muchas gracias por su compra"
 
 }
 
@@ -155,23 +162,11 @@ selectorTipo.onchange = (evt)=>{
 
 
 
-// const renderizarCarrito = ()=>{
-//     const listaCarrito = document.getElementById("listaCarrito")
-//     listaCarrito.innerHTML=""
-//     carrito.forEach(({nombre, precio, cantidad, id}) =>{
-//         let elementoLista = document.createElement("li")
-//         //elementoLista.innerHTML=`${nombre} | P/u: ${precio} | Cant.: ${cantidad} <button id="eliminarCarrito${id}">X</button>`
-//         elementoLista.innerHTML=`${nombre} | P/u: ${precio} | Cant.: ${cantidad}`
-        
-//         listaCarrito.appendChild(elementoLista)
-//         let carritoString = JSON.stringify(carrito)
-//         localStorage.setItem("carrito", carritoString)
-//     })
-// }
+
 
 // Testing
 const app = ()=>{
-    
+
     renderizarProductos(productos)
     productosPreexistentes()
     renderizarCarrito()
