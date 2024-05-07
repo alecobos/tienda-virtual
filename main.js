@@ -13,7 +13,7 @@ const renderizarProductos = (arrayUtilizado)=>{
         prodCard.classList.add("productos")
         prodCard.id = id
         prodCard.innerHTML = `
-                <img src="./assets/${nombre+id}.png" class="card-img-top" alt="${nombre}">
+                <img src="./assets/${id}.png" class="card-img-top" alt="${nombre}">
                 <div class="card-body">
                     <h4 class="card-title">${nombre}</h4>
                     <h5>${tipo}</h5>
@@ -49,6 +49,17 @@ const productosPreexistentes = ()=>{
             let dato = JSON.parse(JSON.stringify(prod))
                 agregarProducto(dato)}
             )
+    }
+}
+
+const agregarProducto = ({id, nombre, tipo, precio, stock, descripcion})=>{
+    if(productos.some(prod=>prod.id===id)){
+        // console.warn("Ya existe un producto con ese id") // esto lo podemos ahcer a futuro con librerias
+    } else {
+        const productoNuevo = new Producto(id, nombre, tipo, precio, stock, descripcion)
+        productos.push(productoNuevo)
+        //guarda el nuevo array de productos
+        localStorage.setItem('productos', JSON.stringify(productos))
     }
 }
 
