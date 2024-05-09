@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
 .productos{
     display:flex;
     flex-direction: column;
+    /* flex-wrap: wrap; */
     align-items: center;
     color: black;
     width: 300px;
@@ -11,8 +19,10 @@
     box-shadow: 6px 3px 10px grey;
     border-radius: 10px;
     background-color: lightskyblue;
-    margin: 4px;
+    margin: 20px;
     font-family: 'Montserrat', sans-serif;
+    gap:20px;
+    
     img{
         margin-top: 5px;
         height: 180px;
@@ -24,8 +34,12 @@
     .card-body{
         align-items: center;
         text-align: center;
+        
         .card-title{
             align-items: center;
+        };
+        .espaciado{
+            padding-top: 20px;
         }
     }
 }
@@ -35,8 +49,10 @@
     color: black;
     text-align: center;
     background-color: lightskyblue;
-    border-color: blue;
-    border-style: solid;
+    /* border-color: blue;
+    border-style: solid; */
+    padding-top: 20px;
+    padding-bottom: 20px;
     ul {
         list-style: none;
     }

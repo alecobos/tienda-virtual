@@ -15,17 +15,33 @@ const renderizarProductos = (arrayUtilizado)=>{
         prodCard.innerHTML = `
                 <img src="./assets/${id}.png" class="card-img-top" alt="${nombre}">
                 <div class="card-body">
-                    <h4 class="card-title">${nombre}</h4>
-                    <h5>${tipo}</h5>
-                    <p class="card-text">${descripcion}</p>
-                    <label>$ ${precio}</label>
+                    <h4 class="card-title espaciado">${nombre}</h4>
+                    <h5 class= "espaciado">${tipo}</h5>
+                    <p class="card-text espaciado">${descripcion}</p>
+                    <label class= "espaciado">$ ${precio}</label>
                     <form id="form${id}">
-                        <label for="contador${id}">Cantidad</label>
+                        <label class= "espaciado" for="contador${id}">Cantidad</label>
                         <input type="number" placeholder="0" id="contador${id}" min="0">
+                        <p></p>
                         <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
-                        <p>Stock: ${stock}</p>
+                        <p class= "espaciado">Stock: ${stock}</p>
                     </form>
                 </div>`
+        // prodCard.innerHTML = `
+        //         <img src="./assets/${id}.png" class="card-img-top" alt="${nombre}">
+        //         <div class="card-body">
+        //             <h4 class="card-title">${nombre}</h4>
+        //             <h5>${tipo}</h5>
+        //             <p class="card-text">${descripcion}</p>
+        //             <label>$ ${precio}</label>
+        //             <form id="form${id}">
+        //                 <label for="contador${id}">Cantidad</label>
+        //                 <input type="number" placeholder="0" id="contador${id}" min="0">
+        //                 <p></p>
+        //                 <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
+        //                 <p>Stock: ${stock}</p>
+        //             </form>
+        //         </div>`
         contenedorProductos.appendChild(prodCard)
         const btn = document.getElementById(`botonProd${id}`)
         console.log(btn)

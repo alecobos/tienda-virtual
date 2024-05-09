@@ -58,4 +58,36 @@ const productosBase = [
         stock:15, 
         descripcion:"Camperon Largo Azul"
     },
+    {
+        id:"007", 
+        nombre:"Campera Entrenamiento", 
+        tipo:"Campera", 
+        precio:50000, 
+        stock:15, 
+        descripcion:"Campera Azul"
+    },
+    {
+        id:"008", 
+        nombre:"Gorra", 
+        tipo:"Accesorios", 
+        precio:12000, 
+        stock:15, 
+        descripcion:"Gorra Celeste"
+    },
+    {
+        id:"009", 
+        nombre:"Buzo con capucha", 
+        tipo:"Accesorios", 
+        precio:25000, 
+        stock:15, 
+        descripcion:"Buzo con capucha blanco"
+    },
+    {
+        id:"010", 
+        nombre:"Set Matero", 
+        tipo:"Accesorios", 
+        precio:42000, 
+        stock:15, 
+        descripcion:"Termo + mate"
+    },
 ]
