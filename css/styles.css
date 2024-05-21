@@ -4,6 +4,10 @@
     padding: 0;
     box-sizing: border-box;
   }
+  .encabezado{
+    background-color: lightskyblue;
+    align-items: center;
+  }
 .row{
     display: flex;
     flex-wrap: wrap;
@@ -14,8 +18,8 @@
     /* flex-wrap: wrap; */
     align-items: center;
     color: black;
-    width: 300px;
-    height: 440px;
+    width: 280px;
+    height: 510px;
     box-shadow: 6px 3px 10px grey;
     border-radius: 10px;
     background-color: lightskyblue;
@@ -25,11 +29,12 @@
     
     img{
         margin-top: 5px;
-        height: 180px;
+        height: 160px;
+        width: 160px;
         padding-top: 3px;
         border-top-left-radius: 20%;
         border-bottom-right-radius: 20%;
-        max-width: 95%;
+        /* max-width: 100%; */
     }
     .card-body{
         align-items: center;
@@ -39,7 +44,7 @@
             align-items: center;
         };
         .espaciado{
-            padding-top: 20px;
+            padding-top: 0px;
         }
     }
 }

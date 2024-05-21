@@ -16,7 +16,7 @@ const productosBase = [
         tipo:"Camiseta", 
         precio:45000, 
         stock:100, 
-        descripcion:"Camiseta Titular tipo juego"
+        descripcion:"Camiseta Titular"
     },
     {
         id:"002", 
@@ -24,7 +24,7 @@ const productosBase = [
         tipo:"Pantalon", 
         precio:20000, 
         stock:100, 
-        descripcion:"Pantalón Titular tipo juego"
+        descripcion:"Pantalón Titular"
     },
     {
         id:"003", 
@@ -32,7 +32,7 @@ const productosBase = [
         tipo:"Camiseta", 
         precio:45000, 
         stock:50, 
-        descripcion:"Camiseta Suplente tipo juego"
+        descripcion:"Camiseta Suplente"
     },
     {
         id:"004", 
@@ -40,7 +40,7 @@ const productosBase = [
         tipo:"Pantalon", 
         precio:20000, 
         stock:30, 
-        descripcion:"Pantalón Suplente tipo juego"
+        descripcion:"Pantalón Suplente"
     },
     {
         id:"005", 

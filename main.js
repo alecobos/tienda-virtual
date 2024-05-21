@@ -1,22 +1,70 @@
-const productos = JSON.parse(localStorage.getItem("productos")) || []
+const url = "./datos.json"
+//funciona sin json
+//const productos = JSON.parse(localStorage.getItem("productos")) || []
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 const pedidos = JSON.parse(localStorage.getItem("pedidos")) || []
 
+//funciona bien probar ahora con json
+// const renderizarProductos = (arrayUtilizado)=>{
+//     const contenedorProductos = document.getElementById("contenedorProductos")
+//     contenedorProductos.innerHTML = ""
+//     arrayUtilizado.forEach(({id, nombre, tipo, precio, stock, descripcion})=>{
+//         const prodCard = document.createElement("div")
+//         prodCard.classList.add("col-xs")
+//         prodCard.classList.add("card")
+//         prodCard.classList.add("productos")
+//         prodCard.id = id
+//         prodCard.innerHTML = `
+//                 <img src="./assets/${id}.png" class="card-img-top" alt="${nombre}">
+//                 <div class="card-body">
+//                     <h5 class="card-title espaciado">${nombre}</h5>
+//                     <h6 class= "espaciado">${tipo}</h6>
+//                     <p class="card-text espaciado">${descripcion}</p>
+//                     <label class= "espaciado">$ ${precio}</label>
+//                     <form id="form${id}">
+//                         <label class= "espaciado" for="contador${id}">Cantidad</label>
+//                         <input type="number" placeholder="0" id="contador${id}" min="0">
+//                         <p></p>
+//                         <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
+//                         <p class= "espaciado">Stock: ${stock}</p>
+//                     </form>
+//                 </div>`
+//         contenedorProductos.appendChild(prodCard)
+//         const btn = document.getElementById(`botonProd${id}`)
+//         console.log(btn)
+//         btn.addEventListener("click",(evento)=>{
+//             evento.preventDefault()
+//             const contadorQuantity = Number(document.getElementById(`contador${id}`).value)
+//             if(contadorQuantity>0){
+//                 agregarCarrito({id, nombre, tipo, precio, stock, descripcion, cantidad:contadorQuantity})
+//                 renderizarCarrito()
+//                 const form = document.getElementById(`form${id}`)
+//                 form.reset()
+//             }
+//         })
+//     })
+// }
 
-const renderizarProductos = (arrayUtilizado)=>{
+//prueba de traer los objetos de json
+fetch(url)
+.then(res => res.json())
+.then(data => renderizarProductos(data))
+
+//funcion para poder visualizar los productos
+const renderizarProductos = (articulos)=>{
     const contenedorProductos = document.getElementById("contenedorProductos")
     contenedorProductos.innerHTML = ""
-    arrayUtilizado.forEach(({id, nombre, tipo, precio, stock, descripcion})=>{
+    articulos.forEach(({id, nombre, tipo, precio, stock, descripcion, img})=>{
         const prodCard = document.createElement("div")
         prodCard.classList.add("col-xs")
         prodCard.classList.add("card")
         prodCard.classList.add("productos")
         prodCard.id = id
         prodCard.innerHTML = `
-                <img src="./assets/${id}.png" class="card-img-top" alt="${nombre}">
+                <img src="${img}" class="card-img-top" alt="${nombre}">
                 <div class="card-body">
-                    <h4 class="card-title espaciado">${nombre}</h4>
-                    <h5 class= "espaciado">${tipo}</h5>
+                    <h5 class="card-title espaciado">${nombre}</h5>
+                    <h6 class= "espaciado">${tipo}</h6>
                     <p class="card-text espaciado">${descripcion}</p>
                     <label class= "espaciado">$ ${precio}</label>
                     <form id="form${id}">
@@ -27,28 +75,18 @@ const renderizarProductos = (arrayUtilizado)=>{
                         <p class= "espaciado">Stock: ${stock}</p>
                     </form>
                 </div>`
-        // prodCard.innerHTML = `
-        //         <img src="./assets/${id}.png" class="card-img-top" alt="${nombre}">
-        //         <div class="card-body">
-        //             <h4 class="card-title">${nombre}</h4>
-        //             <h5>${tipo}</h5>
-        //             <p class="card-text">${descripcion}</p>
-        //             <label>$ ${precio}</label>
-        //             <form id="form${id}">
-        //                 <label for="contador${id}">Cantidad</label>
-        //                 <input type="number" placeholder="0" id="contador${id}" min="0">
-        //                 <p></p>
-        //                 <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
-        //                 <p>Stock: ${stock}</p>
-        //             </form>
-        //         </div>`
         contenedorProductos.appendChild(prodCard)
         const btn = document.getElementById(`botonProd${id}`)
         console.log(btn)
         btn.addEventListener("click",(evento)=>{
+
             evento.preventDefault()
             const contadorQuantity = Number(document.getElementById(`contador${id}`).value)
             if(contadorQuantity>0){
+                Toastify({
+                    text: "producto agregado al carrito",
+                    duration: 2000
+                    }).showToast();
                 agregarCarrito({id, nombre, tipo, precio, stock, descripcion, cantidad:contadorQuantity})
                 renderizarCarrito()
                 const form = document.getElementById(`form${id}`)
@@ -58,8 +96,48 @@ const renderizarProductos = (arrayUtilizado)=>{
     })
 }
 
+
+// const renderizarProductos = (arrayUtilizado)=>{
+//     const contenedorProductos = document.getElementById("contenedorProductos")
+//     contenedorProductos.innerHTML = ""
+//     arrayUtilizado.forEach(({id, nombre, tipo, precio, stock, descripcion, img})=>{
+//         const prodCard = document.createElement("div")
+//         prodCard.classList.add("col-xs")
+//         prodCard.classList.add("card")
+//         prodCard.classList.add("productos")
+//         prodCard.id = id
+//         prodCard.innerHTML = `
+//                 <img src="${img}" class="card-img-top" alt="${nombre}">
+//                 <div class="card-body">
+//                     <h5 class="card-title espaciado">${nombre}</h5>
+//                     <h6 class= "espaciado">${tipo}</h6>
+//                     <p class="card-text espaciado">${descripcion}</p>
+//                     <label class= "espaciado">$ ${precio}</label>
+//                     <form id="form${id}">
+//                         <label class= "espaciado" for="contador${id}">Cantidad</label>
+//                         <input type="number" placeholder="0" id="contador${id}" min="0">
+//                         <p></p>
+//                         <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
+//                         <p class= "espaciado">Stock: ${stock}</p>
+//                     </form>
+//                 </div>`
+//         contenedorProductos.appendChild(prodCard)
+//         const btn = document.getElementById(`botonProd${id}`)
+//         console.log(btn)
+//         btn.addEventListener("click",(evento)=>{
+//             evento.preventDefault()
+//             const contadorQuantity = Number(document.getElementById(`contador${id}`).value)
+//             if(contadorQuantity>0){
+//                 agregarCarrito({id, nombre, tipo, precio, stock, descripcion, cantidad:contadorQuantity})
+//                 renderizarCarrito()
+//                 const form = document.getElementById(`form${id}`)
+//                 form.reset()
+//             }
+//         })
+//     })
+// }
+
 const productosPreexistentes = ()=>{
-    // Si el array de productos esta vacio, utiliza el array de productos pre-existente
     if (productos.length===0){
         productosBase.forEach(prod=>{
             let dato = JSON.parse(JSON.stringify(prod))
@@ -70,7 +148,7 @@ const productosPreexistentes = ()=>{
 
 const agregarProducto = ({id, nombre, tipo, precio, stock, descripcion})=>{
     if(productos.some(prod=>prod.id===id)){
-        // console.warn("Ya existe un producto con ese id") // esto lo podemos ahcer a futuro con librerias
+        
     } else {
         const productoNuevo = new Producto(id, nombre, tipo, precio, stock, descripcion)
         productos.push(productoNuevo)
@@ -94,17 +172,14 @@ const totalCarritoRender = ()=>{
 
 
 const agregarCarrito = (objetoCarrito)=>{
-
     const verifica = carrito.some((elemento)=>{
         return elemento.id === objetoCarrito.id
     })
+    //verificamos si el producto ya existia en el carrito, si existia suma la cantidad ya existente, si no existe lo agrega al pedido
     if (verifica){
-        console.log("entro por aqui")
-
         const indice = carrito.findIndex((elemento)=> elemento.id === objetoCarrito.id)
         carrito[indice].cantidad = parseInt(carrito[indice].cantidad) + parseInt(objetoCarrito.cantidad)
-
-        console.log(carrito[indice])
+        //console.log(carrito[indice])
  
     } else{
         carrito.push(objetoCarrito)
@@ -121,7 +196,7 @@ const renderizarCarrito = ()=>{
     listaCarrito.innerHTML=""
     carrito.forEach(({nombre, precio, cantidad, id}) =>{
         let elementoLista = document.createElement("li")
-        elementoLista.innerHTML=`${nombre} | P/u: ${precio} | Cant.: ${cantidad} <button id="eliminarCarrito${id}">X</button>`
+        elementoLista.innerHTML=`${nombre} | P/u: ${precio} | Cant.: ${cantidad} <button id="eliminarCarrito${id}"> X </button>`
         listaCarrito.appendChild(elementoLista)
         const botonBorrar = document.getElementById(`eliminarCarrito${id}`)
         botonBorrar.addEventListener("click",()=>{
@@ -193,8 +268,8 @@ selectorTipo.onchange = (evt)=>{
 
 // Testing
 const app = ()=>{
-
-    renderizarProductos(productos)
+    renderizarProductos(articulos)
+    //renderizarProductos(productos)
     productosPreexistentes()
     renderizarCarrito()
     totalCarritoRender()
